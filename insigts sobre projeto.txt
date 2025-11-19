@@ -1,0 +1,5 @@
+
+base de conhecimendo do jogo beerclash:
+regras
+cartas disponíveis/textos/efeitos/atributos
+imprimia seu deck

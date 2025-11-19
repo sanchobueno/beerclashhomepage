@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "name": "Pilsen Leve",
+        "type": "Cerveja Pilsen",        
+        "description": "Uma cerveja leve e refrescante. Compra uma carta adicional no início do seu próximo turno.",
+        "imageUrl": "https://i.imgur.com/8A3vW2h.png",
+        "detailsUrl": "#card-1",
+        "abv": 4.5,
+        "ibu": 15,
+        "ebc": 6,
+        "drk": 9
+    },
+    {
+        "id": 2,
+        "name": "IPA Amarga",
+        "type": "Cerveja IPA",
+        "description": "Causa 3 de dano a uma carta alvo. Seu sabor intenso pega os oponentes de surpresa.",
+        "imageUrl": "https://i.imgur.com/dYf2a6L.png",
+        "detailsUrl": "#card-2",
+        "abv": 6.8,
+        "ibu": 60,
+        "ebc": 25,
+        "drk": 6
+    },
+    {
+        "id": 3,
+        "name": "Stout Encorpada",
+        "type": "Cerveja Stout",
+        "description": "Aumenta sua defesa em 5 pontos até o final do turno do oponente. Uma presença robusta na mesa.",
+        "imageUrl": "https://i.imgur.com/TzJ2aOp.png",
+        "detailsUrl": "#card-3",
+        "abv": 7.2,
+        "ibu": 40,
+        "ebc": 80,
+        "drk": 4
+    }
+]
