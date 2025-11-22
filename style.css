@@ -90,6 +90,7 @@ div input:focus {
 
 main {
     overflow-y: scroll; /* Adiciona uma barra de rolagem vertical se o conteúdo exceder a altura */
+    overflow-x: hidden; /* Esconde qualquer conteúdo que transborde horizontalmente */
     max-width: 80rem; /* Largura máxima do conteúdo principal */
     margin: 0 auto; /* Centraliza o conteúdo principal horizontalmente */
     margin-top: 2rem; /* Margem no topo */
@@ -261,3 +262,76 @@ article a:hover {
         margin-top: 1rem; /* Adiciona margem no topo */
     }
 } 
+
+/* --- Estilos do Modal (Pop-up) --- */
+
+.modal-container {
+    display: flex; /* Mantemos flex para o alinhamento */
+    visibility: hidden; /* Escondido, mas ocupando espaço no DOM */
+    opacity: 0; /* Totalmente transparente */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Animação suave */
+    position: fixed; /* Fica fixo na tela */
+    z-index: 1000; /* Fica na frente de todo o resto */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Permite rolagem se a imagem for muito grande */
+    background-color: rgba(0, 0, 0, 0.85); /* Fundo preto semi-transparente */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-container.active {
+    visibility: visible; /* Torna visível */
+    opacity: 1; /* Totalmente opaco */
+}
+
+.modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    transform: scale(0.95); /* Começa um pouco menor */
+    transition: transform 0.3s ease; /* Animação de escala */
+}
+
+#modal-image {
+    max-width: 80vw; /* Largura máxima de 80% da tela */
+    max-height: 80vh; /* Altura máxima de 80% da tela */
+    border-radius: 15px;
+}
+
+.modal-container.active .modal-content {
+    transform: scale(1); /* Volta ao tamanho normal quando ativo */
+}
+
+.modal-close-button {
+    position: absolute;
+    top: -15px;
+    right: 10px;
+    color: #fff;
+    font-size: 3rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.modal-close-button:hover {
+    color: var(--tertiary-color);
+}
+
+.modal-download-button {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    padding: 0.75rem 1.5rem;
+    border-radius: 1rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: transform 0.2s ease;
+}
+
+.modal-download-button:hover {
+    transform: scale(1.05);
+}

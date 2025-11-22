@@ -5,6 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchButton = document.querySelector('#botao-busca');
     let allCards = []; // Array para armazenar todas as cartas carregadas do JSON
 
+    // Elementos do Modal
+    const modal = document.getElementById('modal');
+    const modalImage = document.getElementById('modal-image');
+    const modalClose = document.getElementById('modal-close');
+    const modalDownload = document.getElementById('modal-download');
+
     // Função para renderizar (exibir) as cartas na tela
     function renderCards(cardsToRender) {
         // Limpa o container de cartas antes de adicionar as novas
@@ -24,14 +30,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <div class="card-content">
                     <h2>${card.name}</h2>
+                    <p><strong>Edição:</strong> ${card.edicao}</p>
                     <p>
                         <strong>Tipo:</strong> ${card.type} | <strong>ABV:</strong> ${card.abv}% | <strong>IBU:</strong> ${card.ibu} | <strong>EBC:</strong> ${card.ebc} | <strong>DRK:</strong> ${card.drk}
                     </p>
                     <p>${card.description}</p>
-                    <a href="${card.detailsUrl}">Ver detalhes</a>
+                    <p><em>${card.flavorText}</em></p>
+                    <p><strong>Regras Detalhadas:</strong> ${card.regasDetalhadas}</p>
                 </div>
             `;
             cardContainer.appendChild(cardElement);
+
+            // Adiciona o evento de clique para abrir o modal
+            cardElement.addEventListener('click', () => {
+                modalImage.src = card.imageUrl;
+                modalDownload.href = card.imageUrl;
+                // Sugere um nome de arquivo para download, ex: "IPA_Tropical.png"
+                modalDownload.download = `${card.name.replace(/ /g, '_')}.png`;
+                modal.classList.add('active'); // Mostra o modal adicionando a classe
+            });
         });
     }
 
@@ -62,6 +79,17 @@ document.addEventListener('DOMContentLoaded', () => {
         renderCards(filteredCards);
     }
 
+    // Funções para fechar o modal
+    modalClose.addEventListener('click', () => {
+        modal.classList.remove('active'); // Esconde o modal removendo a classe
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target == modal) { // Se o clique for no fundo do modal
+            modal.classList.remove('active'); // Esconde o modal removendo a classe
+        }
+    });
+
     // Chama a função para carregar as cartas
     loadCards();
 
@@ -76,4 +104,3 @@ function iniciarBusca() {
     // Mantemos a função aqui para não quebrar o `onclick` do HTML, mas ela não é mais necessária.
     console.log('A busca agora é feita dinamicamente!');
 }
-
