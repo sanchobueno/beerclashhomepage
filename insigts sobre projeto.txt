@@ -3,3 +3,9 @@ base de conhecimendo do jogo beerclash:
 regras
 cartas disponíveis/textos/efeitos/atributos
 imprimia seu deck
+trocar botão de buscar por filtro
+formulário de contato
+redes sociais
+buscar por efeito
+pagina para jogar online?
+extras: fichas

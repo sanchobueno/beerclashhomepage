@@ -2,7 +2,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const cardContainer = document.querySelector('main section');
     const searchInput = document.querySelector('header input');
-    const searchButton = document.querySelector('#botao-busca');
     let allCards = []; // Array para armazenar todas as cartas carregadas do JSON
 
     // Elementos do Modal
@@ -57,8 +56,11 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             // Faz a requisição para o arquivo JSON
             const response = await fetch('cards.json');
-            allCards = await response.json(); // Armazena todas as cartas
-            renderCards(allCards); // Renderiza todas as cartas inicialmente
+            let loadedCards = await response.json(); // Armazena todas as cartas
+            
+            // Filtra as "Fichas" que não são cervejas e não possuem atributos para ordenar
+            allCards = loadedCards.filter(card => card.type !== 'Ficha');
+            filtrarEOrdenarCartas(); // Renderiza as cartas com a ordenação e filtro padrão
 
         } catch (error) {
             console.error('Erro ao carregar as cartas:', error);
@@ -66,17 +68,45 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    // Função para realizar a busca
-    function performSearch() {
-        const query = searchInput.value.toLowerCase().trim();
-        
-        const filteredCards = allCards.filter(card => {
-            const cardName = card.name.toLowerCase();
-            const cardType = card.type.toLowerCase();
-            return cardName.includes(query) || cardType.includes(query);
-        });
+    // NOVA FUNÇÃO PARA FILTRAR E ORDENAR
+    window.filtrarEOrdenarCartas = function() {
+        const buscaValue = document.getElementById('busca-input').value.toLowerCase();
+        const filtroTipoValue = document.getElementById('filtro-tipo').value;
+        const ordenarValue = document.getElementById('ordenar-por').value;
 
-        renderCards(filteredCards);
+        let cartasFiltradas = allCards;
+
+        // 1. Filtrar por tipo de cerveja
+        if (filtroTipoValue !== 'todos') {
+            cartasFiltradas = cartasFiltradas.filter(card => card.type.includes(filtroTipoValue));
+        }
+
+        // 2. Filtrar por busca de texto (nome)
+        if (buscaValue) {
+            cartasFiltradas = cartasFiltradas.filter(card => card.name.toLowerCase().includes(buscaValue));
+        }
+
+        // 3. Ordenar
+        switch (ordenarValue) {
+            case 'a-z':
+                cartasFiltradas.sort((a, b) => a.name.localeCompare(b.name));
+                break;
+            case 'z-a':
+                cartasFiltradas.sort((a, b) => b.name.localeCompare(a.name));
+                break;
+            case 'abv':
+            case 'ibu':
+            case 'ebc':
+            case 'drk':
+                cartasFiltradas.sort((a, b) => b[ordenarValue] - a[ordenarValue]); // Maior para o menor
+                break;
+            case 'id':
+            default:
+                cartasFiltradas.sort((a, b) => a.id - b.id); // Ordem crescente de ID
+                break;
+        }
+
+        renderCards(cartasFiltradas);
     }
 
     // Funções para fechar o modal
@@ -94,13 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadCards();
 
     // Adiciona eventos para acionar a busca
-    searchInput.addEventListener('keyup', performSearch); // Filtra enquanto o usuário digita
-    searchButton.addEventListener('click', performSearch); // Filtra ao clicar no botão
+    searchInput.addEventListener('input', filtrarEOrdenarCartas); // Filtra enquanto o usuário digita
 });
 
-// A função iniciarBusca() pode ser desenvolvida aqui no futuro
-function iniciarBusca() {
-    // A lógica foi movida para performSearch e é acionada por um event listener.
-    // Mantemos a função aqui para não quebrar o `onclick` do HTML, mas ela não é mais necessária.
-    console.log('A busca agora é feita dinamicamente!');
-}
+// A função `filtrarEOrdenarCartas` é chamada pelos `onchange` no HTML e pelo `input` no campo de busca.

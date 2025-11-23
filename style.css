@@ -38,7 +38,15 @@ header h1 {
     white-space: nowrap; /* Impede a quebra de linha do texto */
 }
 
-div input {
+header > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+header div input, 
+.filtros-container select {
     padding: 0.375rem 0.75rem; /* Espaçamento interno */
     border-radius: 1rem; /* Arredonda as bordas */
     border: 1px solid var(--tertiary-color); /* Define a borda */
@@ -46,12 +54,26 @@ div input {
     font-family: inherit; /* Herda a família da fonte do elemento pai */
     font-size: 1.5rem; /* Tamanho da fonte */
     transition: all 0.2s ease; /* Adiciona uma transição suave para todas as propriedades */
-    width: 30rem; /* Largura do input */
     color: var(--secondary-color); /* Cor do texto digitado */
     margin-right: .5rem; /* Margem à direita */
 }
 
-div input::placeholder {
+.filtros-container {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.filtros-container select {
+    font-size: 1.2rem; /* Tamanho da fonte um pouco menor para os filtros */
+    cursor: pointer; /* Muda o cursor para indicar que é clicável */
+    width: auto; /* Largura automática baseada no conteúdo */
+    -webkit-appearance: none; /* Remove a aparência padrão no Chrome/Safari */
+    -moz-appearance: none; /* Remove a aparência padrão no Firefox */
+    appearance: none; /* Remove a aparência padrão */
+}
+
+header div input::placeholder {
     font-size: 1.2rem; /* Tamanho da fonte do placeholder */
     font-weight: 300; /* Peso da fonte do placeholder */
     color: var(--tertiary-color); /* Cor do texto do placeholder */
@@ -61,6 +83,10 @@ div input:focus {
     outline: none; /* Remove a borda de foco padrão */
     border-color: var(--bg-color); /* Muda a cor da borda ao focar */
     box-shadow: 0 0 0 0.1rem var(--tertiary-color); /* Adiciona uma sombra de caixa para indicar foco */
+}
+
+header div input {
+    width: 30rem; /* Largura do input de busca */
 }
 
 #botao-busca {
@@ -238,6 +264,7 @@ article a:hover {
     }
 
     div input, /* Estilos para o input e seu placeholder em telas muito pequenas */
+    .filtros-container select,
     div input::placeholder {
         font-size: 1rem; /* Reduz o tamanho da fonte */
     }
@@ -246,13 +273,14 @@ article a:hover {
         font-size: 1.3rem; /* Reduz o tamanho da fonte */
     }
 
-    div { /* Estilos para a div do cabeçalho em telas muito pequenas */
-        display: flex; /* Habilita flexbox */
-        align-items: center; /* Alinha itens ao centro */
-        justify-content: center; /* Centraliza itens */
-        flex-direction: column; /* Organiza em coluna */
-        gap: 0.5rem; /* Espaçamento entre os itens */
-    }
+    /* A regra genérica 'div' foi movida para 'header > div' para ser mais específica */
+    /* div { 
+        display: flex;
+        align-items: center; 
+        justify-content: center; 
+        flex-direction: column; 
+        gap: 0.5rem; 
+    } */
 
     .footer { /* Estilos para o rodapé em telas muito pequenas */
         display: none; /* Oculta o rodapé */

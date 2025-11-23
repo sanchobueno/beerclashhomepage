@@ -12,9 +12,24 @@
 <header>
     <h1>Beerclash</h1>
     <div>
-        <input type="text" placeholder="Buscar carta...">
-        <button id="botao-busca" onclick="iniciarBusca()">Buscar</button>
-
+        <input type="text" id="busca-input" placeholder="Digite para buscar por nome...">
+        <div class="filtros-container">
+            <select id="filtro-tipo" onchange="filtrarEOrdenarCartas()">
+                <option value="todos">Todos os Tipos</option>
+                <option value="Ale">Ale</option>
+                <option value="Lager">Lager</option>
+                <option value="Wild">Wild</option>
+            </select>
+            <select id="ordenar-por" onchange="filtrarEOrdenarCartas()">
+                <option value="id">Ordenar por ID</option>
+                <option value="a-z">A-Z</option>
+                <option value="z-a">Z-A</option>
+                <option value="abv">ABV</option>
+                <option value="ibu">IBU</option>
+                <option value="ebc">EBC</option>
+                <option value="drk">DRK</option>
+            </select>
+        </div>
     </div>
 
 </header>
