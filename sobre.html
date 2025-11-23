@@ -6,6 +6,7 @@
     <title>Sobre - Beerclash</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="sobre.css">
+    <script src="main.js" defer></script> <!-- Para a lógica do modal de contato -->
 </head>
 <body>
     <header>
@@ -77,12 +78,19 @@
     <footer class="footer">
         <ul class="footer-links">
             <li><a href="sobre.html">Sobre</a></li>
-            <li><a href="#">Contato</a></li>
-            <li><a href="#">instagram</a></li>
-            <li><a href="#">facebook</a></li>
-            <li><a href="#">bluesky</a></li>
-            <li><a href="#">youtube</a></li>
+            <li><a href="#" class="contact-link">Contato</a></li>
+            <li><a href="https://www.instagram.com/beerc_lashtcg/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
         </ul>
     </footer>
+
+    <!-- Estrutura do Modal de Contato -->
+    <div id="contactModal" class="contact-modal-container">
+        <div class="contact-modal-content">
+            <span class="modal-close-button">&times;</span>
+            <p>Dúvidas ou sugestões envie um email para <a href="#" id="email-link">beerclash.tcg@gmail.com</a></p>
+            <span id="copy-feedback">Email copiado!</span>
+        </div>
+    </div>
+
 </body>
 </html>

@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beerclash</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <script src="script.js" defer></script> <!-- Para a lógica das cartas -->
+    <script src="main.js" defer></script> <!-- Para a lógica do modal de contato -->
 </head>
 <body>
     
@@ -43,11 +44,8 @@
 <footer class="footer">
     <ul class="footer-links">
         <li><a href="sobre.html">Sobre</a></li>
-        <li><a href="#">Contato</a></li>
-        <li><a href="#">instagram</a></li>
-        <li><a href="#">facebook</a></li>
-        <li><a href="#">bluesky</a></li>
-        <li><a href="#">youtube</a></li>
+        <li><a href="#" class="contact-link">Contato</a></li>
+        <li><a href="https://www.instagram.com/beerc_lashtcg/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
     </ul>
 </footer>
 
@@ -56,7 +54,16 @@
     <div class="modal-content">
         <span id="modal-close" class="modal-close-button">&times;</span>
         <img id="modal-image" src="" alt="Imagem da Carta em tamanho grande">
-        <a id="modal-download" href="" download="beerclash-card.png" class="modal-download-button">Baixar Imagem</a>
+        <a id="modal-download" href="" download="beerclash-card.png" class="modal-download-button" target="_blank">Baixar Imagem</a>
+    </div>
+</div>
+
+<!-- Estrutura do Modal de Contato -->
+<div id="contactModal" class="contact-modal-container">
+    <div class="contact-modal-content">
+        <span class="modal-close-button">&times;</span>
+        <p>Dúvidas ou sugestões envie um email para <a href="#" id="email-link">beerclash.tcg@gmail.com</a></p>
+        <span id="copy-feedback">Email copiado!</span>
     </div>
 </div>
 

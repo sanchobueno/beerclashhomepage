@@ -363,3 +363,47 @@ article a:hover {
 .modal-download-button:hover {
     transform: scale(1.05);
 }
+
+/* --- Estilos do Modal de Contato --- */
+
+.contact-modal-container {
+    display: none; /* Oculto por padrão */
+    position: fixed;
+    z-index: 1001; /* Acima do modal de imagem */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.85);
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-modal-content {
+    background-color: var(--bg-color);
+    margin: auto;
+    padding: 25px 30px;
+    border: 1px solid var(--tertiary-color);
+    width: 90%;
+    max-width: 500px;
+    border-radius: 8px;
+    position: relative;
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+#email-link {
+    color: var(--primary-color);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#copy-feedback {
+    display: none;
+    color: #69f0ae; /* Verde claro para feedback positivo */
+    margin-top: 15px;
+    font-size: 1rem;
+}
